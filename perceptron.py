@@ -58,5 +58,8 @@ class PERCEPTRON:
                     max_accuracy=accuracy[i]
                     chkptw=self.weights
                 out_hist.clear()
+                
+data=pd.read_csv("E:/Machine Learning/GClassroom Content/mobile_cleaned-1549119762886.csv")
+data_thin=data[['aperture','battery_capacity','brand_rank','stand_by_time','screen_size','price','video_resolution']]
 perc=PERCEPTRON(data_thin,predictor_target)
 final=perc.Fit(5000,0.24)
