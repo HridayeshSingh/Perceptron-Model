@@ -23,6 +23,11 @@ class PERCEPTRON:
         hypo=np.dot(scaled_features,weights)
         output=self.Activation(hypo)
         return output
-      
+     
+        def Loss_Func(self,prediction, predictor):
+        loss= np.square((prediction-predictor))
+        #print(loss[0])
+        return loss[0]
+    
 perc=PERCEPTRON(data_thin,predictor_target)
 final=perc.Fit(5000,0.24)
