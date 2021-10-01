@@ -44,12 +44,12 @@ class PERCEPTRON:
                     output=self.Hypothesis(x, self.weights)
                     out_hist.append(output)
                     loss_iter+=self.Loss_Func(output,y)
-                    self.weights[0]=self.weights[0]-(lr*(output-y)*x[2])
-                    self.weights[1]=self.weights[1]-(lr*(output-y)*x[5])
-                    self.weights[2]=self.weights[2]-(lr*(output-y)*x[0])
+                    self.weights[0]=self.weights[0]-(lr*(output-y)*x[0])
+                    self.weights[1]=self.weights[1]-(lr*(output-y)*x[1])
+                    self.weights[2]=self.weights[2]-(lr*(output-y)*x[2])
                     self.weights[3]=self.weights[3]-(lr*(output-y)*x[3])
-                    self.weights[4]=self.weights[4]-(lr*(output-y)*x[1])
-                    self.weights[5]=self.weights[5]-(lr*(output-y)*x[4])
+                    self.weights[4]=self.weights[4]-(lr*(output-y)*x[4])
+                    self.weights[5]=self.weights[5]-(lr*(output-y)*x[5])
                     self.weights[6]=self.weights[6]-(lr*(output-y)*x[6])
                 loss_hist.append(loss_iter)
                 loss_iter=0
@@ -58,8 +58,13 @@ class PERCEPTRON:
                     max_accuracy=accuracy[i]
                     chkptw=self.weights
                 out_hist.clear()
+            print(max_accuracy)
+            return [chkptw,max_accuracy]
                 
 data=pd.read_csv("E:/Machine Learning/GClassroom Content/mobile_cleaned-1549119762886.csv")
 data_thin=data[['aperture','battery_capacity','brand_rank','stand_by_time','screen_size','price','video_resolution']]
+data_thin.head
+predictor_target=data[['is_liked']].values
+
 perc=PERCEPTRON(data_thin,predictor_target)
 final=perc.Fit(5000,0.24)
