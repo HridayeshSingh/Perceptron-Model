@@ -44,7 +44,14 @@ class PERCEPTRON:
                     output=self.Hypothesis(x, self.weights)
                     out_hist.append(output)
                     loss_iter+=self.Loss_Func(output,y)
-    loss_hist.append(loss_iter)
+                    self.weights[0]=self.weights[0]-(lr*(output-y)*x[2])
+                    self.weights[1]=self.weights[1]-(lr*(output-y)*x[5])
+                    self.weights[2]=self.weights[2]-(lr*(output-y)*x[0])
+                    self.weights[3]=self.weights[3]-(lr*(output-y)*x[3])
+                    self.weights[4]=self.weights[4]-(lr*(output-y)*x[1])
+                    self.weights[5]=self.weights[5]-(lr*(output-y)*x[4])
+                    self.weights[6]=self.weights[6]-(lr*(output-y)*x[6])
+                loss_hist.append(loss_iter)
                 loss_iter=0
                 accuracy.append(accuracy_score(out_hist,self.predictor))
                 if(accuracy[i]>max_accuracy):
