@@ -29,5 +29,15 @@ class PERCEPTRON:
         #print(loss[0])
         return loss[0]
     
+    def Fit(self,epochs,lr):
+        self.scaled_features=self.Scaling(self.features)
+        out_hist=[]
+        loss_hist=[]
+        accuracy=[]
+        max_accuracy=0
+        loss_iter=100
+        self.weights=np.ones([self.scaled_features.shape[1]])
+        #print(self.weights.shape)
+    
 perc=PERCEPTRON(data_thin,predictor_target)
 final=perc.Fit(5000,0.24)
