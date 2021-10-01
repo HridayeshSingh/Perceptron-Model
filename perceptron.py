@@ -38,6 +38,18 @@ class PERCEPTRON:
         loss_iter=100
         self.weights=np.ones([self.scaled_features.shape[1]])
         #print(self.weights.shape)
-    
+    while (loss_iter>=1):
+            for i in range(epochs):
+                for x,y in zip(self.scaled_features,self.predictor):
+                    output=self.Hypothesis(x, self.weights)
+                    out_hist.append(output)
+                    loss_iter+=self.Loss_Func(output,y)
+    loss_hist.append(loss_iter)
+                loss_iter=0
+                accuracy.append(accuracy_score(out_hist,self.predictor))
+                if(accuracy[i]>max_accuracy):
+                    max_accuracy=accuracy[i]
+                    chkptw=self.weights
+                out_hist.clear()
 perc=PERCEPTRON(data_thin,predictor_target)
 final=perc.Fit(5000,0.24)
